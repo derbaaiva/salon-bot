@@ -43,7 +43,7 @@ async def choose_master(message: types.Message):
 
 
 # MASTER SELECT
-@dp.message(F.text.contains("|"))
+@dp.message(lambda m: m.text and "|" in m.text)
 async def master_selected(message: types.Message):
     master_id, name = message.text.split("|")
 
