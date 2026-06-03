@@ -96,6 +96,7 @@ async def time_selected(message: types.Message):
 
 # START BOT
 async def main():
+    await bot.delete_webhook(drop_pending_updates=True)
     await init_db()
     await dp.start_polling(bot)
 
