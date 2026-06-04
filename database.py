@@ -41,7 +41,18 @@ async def init_db():
             status TEXT DEFAULT 'ACTIVE'
         )
         """)
+        cur = await db.execute("SELECT COUNT(*) FROM masters")
+        count = (await cur.fetchone())[0]
 
+        if count == 0:
+            await db.executemany(
+                "INSERT INTO masters (name) VALUES (?)",
+                [
+                    ("Аня",),
+                    ("Катя",),
+                    ("Оля",)
+                ]
+            )
         await db.commit()
 
 
